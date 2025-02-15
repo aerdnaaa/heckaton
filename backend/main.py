@@ -63,7 +63,7 @@ async def submit(video_link: VideoRequest):
     # Step 1: Request Cobalt API to convert video to MP3
     try:
         # Define the Cobalt API URL
-        cobalt_api = "http://localhost:9000/"
+        cobalt_api = "http://cobalt-api:9000/"
 
         # Define the request headers
         headers = {
@@ -86,7 +86,7 @@ async def submit(video_link: VideoRequest):
             raise HTTPException(status_code=500, detail="Cobalt conversion failed")
 
         response_data = response.json()
-        mp3_url = response_data.get("url")  # URL of the generated MP3
+        mp3_url = response_data.get("url").replace("localhost","cobalt-api")  # URL of the generated MP3
 
         if not mp3_url:
             raise HTTPException(status_code=500, detail="MP3 URL not found in response")
