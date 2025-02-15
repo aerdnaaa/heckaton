@@ -4,7 +4,7 @@
 
 # Xcode
 #
-build/
+frontend/build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -24,7 +24,7 @@ DerivedData
 
 # Android/IntelliJ
 #
-build/
+frontend/build/
 .idea
 .gradle
 local.properties
@@ -36,7 +36,7 @@ local.properties
 
 # node.js
 #
-node_modules/
+frontend/node_modules/
 npm-debug.log
 yarn-error.log
 
