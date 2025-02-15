@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
 class VideoRequest(BaseModel):
-    url : str
+    video : str
     # format : str #.mp3 or .mp4
 
 app = FastAPI()
