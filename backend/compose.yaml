@@ -13,6 +13,10 @@ services:
       context: .
     ports:
       - 8000:8000
+    environment:
+      - GOOGLE_API_KEY="AIzaSyADsp10P3JmeWc8aGUivN9YUyx6bMNq6S4"
+    env_file:
+      - .env
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

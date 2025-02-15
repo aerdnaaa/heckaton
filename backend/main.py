@@ -7,7 +7,6 @@ import json
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-import whisper
 import requests
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
@@ -34,6 +33,11 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
 )
+
+@app.on_event("startup")
+def startup_event():
+    print("Server started up!")
+
 
 @app.get("/") #get - read data
 async def health() -> dict:

@@ -19,7 +19,7 @@ const Index = () => {
     return fetch('http://localhost:8000/submit', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
