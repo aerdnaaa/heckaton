@@ -1,23 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, ActivityIndicator, ScrollView, FlatList } from "react-native";
 import { MdAccessTime } from "react-icons/md";
-import { createServer } from "miragejs";
 import IngredientComponent from '@/components/ingredient/IngredientComponent';
 import InstructionComponent from '@/components/instruction/InstructionComponent';
-
-createServer({
-  routes() {
-    this.post("/submit", () => {
-      return {
-        prep_time: 20,
-        cooking_time: 20,
-        total_time: 40,
-        instructions: ["1.Preheat oven to 350°F (175°C) and line a muffin tin with liners", "2.In a large bowl, mash the bananas until smooth", "3.Stir in melted butter, sugar, egg, and vanilla extract until well combined", "4.In another bowl, whisk together flour, baking soda, and salt"],
-        ingredients: [{ item: "hi", qty: 2, unit: "hi" }, { item: "hi", qty: 4, unit: "h2i" }],
-      }
-    })
-  },
-})
 
 const Index = () => {
   const [url, onChangeUrl] = React.useState('');
@@ -31,7 +16,7 @@ const Index = () => {
   const [instructions, setInstructions] = React.useState([]);
   const getRecipe = () => {
     setLoading(true);
-    return fetch('https://localhost:8081/submit', {
+    return fetch('http://localhost:8000/submit', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -59,14 +44,19 @@ const Index = () => {
     setRecipe(false);
   }
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: '#fdfbd4',
-      }}
-    >
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <View style={{
+      flex: 1,
+      backgroundColor: '#fdfbd4',
+      
+    }}>
+      <View style={{
+      flex: 1,
+      display: 'flex',
+      justifyContent: "center",
+      alignItems: "center",
+      alignContent: 'center',
+    }}>
       {displaySearchBar ?
         <View style={styles.head}>
           <Text>Welcome To !!</Text>
@@ -82,11 +72,13 @@ const Index = () => {
             color='#f56f42'
           />
         </View>
-        : <Button
-          onPress={getAnotherRecipe}
-          title='Try Another Recipe'
-          color='#f56f42'
-        />
+        : <View style={{paddingTop:10}}>
+          <Button
+            onPress={getAnotherRecipe}
+            title='Try Another Recipe'
+            color='#f56f42'            
+          />
+        </View> 
       }
 
       {
@@ -126,7 +118,9 @@ const Index = () => {
           </View>
           : <View></View>
       }
+      </View>
     </View >
+    </ScrollView>
   );
 }
 
@@ -146,7 +140,8 @@ const styles = StyleSheet.create({
   },
   recipeContainer: {
     paddingTop: 20,
-    width: '90%'
+    width: '90%',
+    paddingBottom: 20,
   },
   timingHeaders: {
     display: 'flex',

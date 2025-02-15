@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { CiShoppingCart } from "react-icons/ci";
 import IngredientItem from './IngredientItem';
 
@@ -12,12 +12,12 @@ const IngredientComponent = ({ ingredients }: IngredientListProps) => {
     return (
         <View style={styles.ingredientContainer}>
             <Text style={styles.mediumFont}><CiShoppingCart style={styles.icon} />Ingredient Lists</Text>
-            <ScrollView>
+            <View>
                 {ingredients.map(({ item, qty, unit }) => {
                     return <IngredientItem item={item} qty={qty} unit={unit} />
                 })}
 
-            </ScrollView>
+            </View>
         </View>
     )
 }

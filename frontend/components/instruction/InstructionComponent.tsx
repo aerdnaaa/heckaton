@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { InstructionListProps } from './InstructionProps';
 import { CiCircleList } from "react-icons/ci";
@@ -11,12 +11,11 @@ const InstructionComponent = ({ instructions }: InstructionListProps) => {
     return (
         <View style={styles.instructionContainer}>
             <Text style={styles.mediumFont}><CiCircleList style={styles.icon} />Instructions</Text>
-            <ScrollView>
+            <View>
                 {instructions.map((instruction) => {
                     return <InstructionItem instruction={instruction} />
                 })}
-
-            </ScrollView>
+            </View>
         </View>
     )
 }
